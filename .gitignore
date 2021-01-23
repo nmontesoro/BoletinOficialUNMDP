@@ -127,3 +127,15 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Logs
+bo-unmdp-err.txt
+bo-unmdp.txt
+
+# Linter
+pylintrc
+
+# Parametros y keys
+params.json
+
+.vscode
