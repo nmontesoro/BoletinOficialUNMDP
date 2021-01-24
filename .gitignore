@@ -139,3 +139,4 @@ pylintrc
 params.json
 
 .vscode
+.DS_Store
