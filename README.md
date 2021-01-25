@@ -2,9 +2,18 @@
 Un bot que lee el Boletín Oficial de la Universidad Nacional de Mar del Plata y reproduce el contenido en Twitter
 
 ## Cómo se utiliza
-```
-python tweet.py
-```
+```tweet.py [opciones]```
+
+### Argumentos posibles
+* `-h`, `--help`: Muestra la ayuda.
+
+* `-l:INFO`, `--log-level=INFO`: Establece el nivel de logging (debug, info, warning.)
+ Guarda el output en tweet.log.
+
+* `-d`, `--dry-run`: Muestra los tweets en pantalla en vez de enviarlos. Causa que no 
+se guarde el id del último boletín procesado (es decir, es útil para cuando se 
+quiere visualizar la información antes de que sea twitteada.)
+
 *Importante: es necesario tener un archivo `params.json` donde se
 encuentren tanto las claves para la API de Twitter como el ID del último
 Boletín Oficial procesado.*
