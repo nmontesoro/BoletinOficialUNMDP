@@ -1,0 +1,13 @@
+tweet.py [opciones]
+
+Argumentos posibles:
+--------------------
+    -h, --help: Muestra la ayuda.
+
+    -l:INFO, --log-level=INFO: Establece el nivel de logging (debug, info,
+                                 warning.) Guarda el output en tweet.log.
+
+    -d, --dry-run: Muestra los tweets en pantalla en vez de enviarlos. Causa que
+                     no se guarde el id del último boletín procesado (es decir,
+                     es útil para cuando se quiere visualizar la información
+                     antes de que sea twitteada.)

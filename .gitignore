@@ -131,6 +131,7 @@ dmypy.json
 # Logs
 bo-unmdp-err.txt
 bo-unmdp.txt
+tweet.log
 
 # Linter
 pylintrc

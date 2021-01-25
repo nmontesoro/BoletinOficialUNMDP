@@ -2,6 +2,7 @@
 """
 import requests
 import textwrap
+import logging
 from bs4 import BeautifulSoup
 
 
@@ -48,6 +49,8 @@ class BOUnmdpApi:
             bs = BeautifulSoup(datum["resumen"], "html.parser")
             datum["resumen"] = bs.get_text()
 
+        logging.debug("Datos del boletín procesados correctamente.")
+
         return data
 
     def ObtieneIdBoletin(self) -> int:
@@ -70,6 +73,9 @@ class BOUnmdpApi:
         else:
             raise Exception("El servidor no devolvió los datos esperados.")
 
+        logging.debug(
+            "El ID del boletín más reciente es {}.".format(id_boletin))
+
         return id_boletin
 
     def ObtieneDatosBoletin(self, id_boletin: int) -> list:
@@ -90,6 +96,9 @@ class BOUnmdpApi:
 
         response = self._PostRequest(MAIN_URL + endpoint, data)
 
+        logging.debug(
+            "Se obtuvieron los datos del boletín (id={}).".format(id_boletin))
+
         return self._ParseDatosBoletin(response.json())
 
     def ObtieneTextos(self, id_norma: int) -> list:
@@ -109,6 +118,9 @@ class BOUnmdpApi:
         data = {"id_norma_modifica": id_norma}
 
         response = self._PostRequest(MAIN_URL + endpoint, data)
+
+        logging.debug(
+            "Se obtuvieron los textos de la norma (id={}).".format(id_norma))
 
         return response.json()
 
@@ -138,5 +150,7 @@ class BOParser:
 
             thread.append(last_tweet)
             tweets.append(thread)
+
+        logging.debug("Listado de tweets generado.")
 
         return tweets
