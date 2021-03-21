@@ -189,7 +189,7 @@ class BOParser:
             thread = textwrap.wrap(
                 text=content, width=280, replace_whitespace=False)
 
-            last_tweet = "{categoria} {numero}\nFecha: {fecha_norma} (publicado el {fecha_publicacion})\n".format(
+            last_tweet = "{organo} - {categoria} {numero}\nFecha: {fecha_norma} (publicado el {fecha_publicacion})\n".format(
                 **datum)
             last_tweet += "Ver " + MAIN_URL + endpoint + datum["id_norma"]
 
