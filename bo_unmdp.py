@@ -130,6 +130,7 @@ class BOParser:
     """
 
     #TODO: Buscar alguna forma más elegante de hacer el hashtag
+    # Algunas tienen dos espacios; es así como figura en la página.
     hashtags = {
         "Asamblea Universitaria": "#AsambleaUniversitaria",
         "Colegio Nacional Arturo U. Illia": "#Illia",
