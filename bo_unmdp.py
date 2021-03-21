@@ -129,6 +129,49 @@ class BOParser:
     """Clase para procesar la información de la "API" de la UNMDP.
     """
 
+    #TODO: Buscar alguna forma más elegante de hacer el hashtag
+    hashtags = {
+        "Asamblea Universitaria": "#AsambleaUniversitaria",
+        "Colegio Nacional Arturo U. Illia": "#Illia",
+        "Consejo Académico  Facultad de Derecho": "#Derecho",
+        "Consejo Académico  Facultad de Ingeniería": "#Ingeniería",
+        "Consejo Académico Facultad de Arquitectura, Urbanismo y Diseño": "#FAUD",
+        "Consejo Académico Facultad de Ciencias Agrarias": "#CsAgrarias",
+        "Consejo Académico Facultad de Ciencias de la Salud y Trabajo Social": "#CsSalud",
+        "Consejo Académico Facultad de Ciencias Económicas y Sociales": "#Económicas",
+        "Consejo Académico Facultad de Ciencias Exactas y Naturales": "#Exactas",
+        "Consejo Académico Facultad de Humanidades": "#Humanidades",
+        "Consejo Académico Facultad de Psicología": "#Psicología",
+        "Consejo Académico": "#ConsejoAcademico",
+        "Consejo Directivo Escuela Superior de Medicina": "#Medicina",
+        "Consejo Superior": "#ConsejoSuperior",
+        "Decanato Facultad de Arquitectura, Urbanismo y Diseño": "#FAUD",
+        "Decanato Facultad de Ciencias Agrarias": "#CsAgrarias",
+        "Decanato Facultad de Ciencias de la Salud y Trabajo Social": "#CsSalud",
+        "Decanato Facultad de Ciencias Económicas y Sociales": "#Económicas",
+        "Decanato Facultad de Ciencias Exactas y Naturales": "#Exactas",
+        "Decanato Facultad de Derecho": "#Derecho",
+        "Decanato Facultad de Humanidades": "#Humanidades",
+        "Decanato Facultad de Ingeniería": "#Ingeniería",
+        "Decanato Facultad de Psicología": "#Psicología",
+        "Direccion Escuela Superior de Medicina": "#Medicina",
+        "Gremio Docente": "#Gremios",
+        "Gremio no Docente": "#Gremios",
+        "Rectorado": "#Rectorado",
+        "Secretaría Académica": "#SecretaríaAcadémica",
+        "Secretaría de Bienestar de la Comunidad Universitaria": "#Bienestar",
+        "Secretaría de Comunicación y Relaciones Públicas": "#RRPP",
+        "Secretaría de Obras": "#Obras",
+        "Subsecretaría de Servicios": "#Servicios",
+        "Subsecretaría Legal y Técnica": "#Legal"}
+
+    def _GetHashtagFromOrgano(self, organo: str) -> str:
+        """Devuelve el hashtag correspondiente al órgano emisor de la
+        resolución, o el mismo órgano si no lo encuentra"
+        """
+
+        return self.hashtags.get(organo, organo)
+
     def GetAllTweets(self, data: list) -> list:
         """Compila la información dada en forma de tweets.
 
@@ -139,12 +182,13 @@ class BOParser:
         tweets = []
 
         for datum in data:
-            content = "{categoria} {numero} - {organo}\n\n{resumen}".format(
+            hashtag = self._GetHashtagFromOrgano(datum["organo"])
+            content = hashtag + "\n\n{resumen}".format(
                 **datum)
             thread = textwrap.wrap(
                 text=content, width=280, replace_whitespace=False)
 
-            last_tweet = "Fecha: {fecha_norma} (publicado el {fecha_publicacion})\n".format(
+            last_tweet = "{categoria} {numero}\nFecha: {fecha_norma} (publicado el {fecha_publicacion})\n".format(
                 **datum)
             last_tweet += "Ver " + MAIN_URL + endpoint + datum["id_norma"]
 
