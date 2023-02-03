@@ -1,5 +1,13 @@
 # BoletinOficialUNMDP
-Un bot que lee el Boletín Oficial de la Universidad Nacional de Mar del Plata y reproduce el contenido en Twitter
+
+## English
+This is a bot that reads the official bulletin of Universidad Nacional de Mar del Plata and tweets a summary for 
+each article, along with a link to the original publication. Check it out at
+[@BoletinUnmdp](https://twitter.com/BoletinUnmdp).
+
+## Spanish
+Un bot que lee el Boletín Oficial de la Universidad Nacional de Mar del Plata y reproduce el contenido en Twitter.
+Se puede ver en funcionamiento siguiendo [@BoletinUnmdp](https://twitter.com/BoletinUnmdp).
 
 ## Cómo se utiliza
 ```tweet.py [opciones]```
